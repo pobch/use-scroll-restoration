@@ -8,15 +8,17 @@ import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
 import { scrollTo } from './scrollTo'
 
 class SwitchWrapper extends Component {
+  componentDidMount() {
+    console.log('Mounted', this.props.history.action)
+  }
+
   componentDidUpdate() {
-    console.log('%cSCROLLED', 'background-color: salmon; color: white; padding: 3px;')
-    console.log(
-      'window.scrollY:',
-      window.scrollY,
-      ', html.scrollTop:',
-      document.documentElement.scrollTop
-    )
-    scrollTo(0, 0)
+    console.log('Updated', this.props.history.action)
+
+    if (this.props.history.action === 'PUSH') {
+      console.log('%cSCROLLED', 'background-color: salmon; color: white; padding: 3px;')
+      scrollTo(0) // default scroll duration = 200ms
+    }
   }
 
   render() {
