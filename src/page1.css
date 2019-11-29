@@ -1,0 +1,20 @@
+.page {
+  padding-top: 50px;
+  height: 5000px;
+  background-color: salmon;
+  color: white;
+}
+
+.nav {
+  background-color: #333333;
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  padding: 15px;
+  width: 100%;
+}
+
+a:visited {
+  color: #cccccc;
+}

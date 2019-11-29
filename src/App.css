@@ -20,3 +20,14 @@
 .App-link {
   color: #09d3ac;
 }
+
+.list-container {
+  margin: 20px 0;
+  list-style-type: none;
+}
+
+.list-item {
+  font-size: 25px;
+  padding: 20px;
+  border-bottom: 1px solid #888888;
+}
