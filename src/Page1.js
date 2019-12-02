@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './page1.css'
 
-function Page1(props) {
+function Page1() {
   return (
     <div className="page">
       <div className="nav">

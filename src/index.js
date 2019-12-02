@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
@@ -7,28 +7,28 @@ import * as serviceWorker from './serviceWorker'
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
 import { scrollTo } from './scrollTo'
 
-class SwitchWrapper extends Component {
-  componentDidMount() {
-    console.log('Mounted', this.props.history.action)
-  }
+function SwitchWrapper(props) {
+  const prevPathname = useRef()
 
-  componentDidUpdate() {
-    console.log('Updated', this.props.history.action)
+  useEffect(() => {
+    console.log('Rendered', props.history.action)
 
-    if (this.props.history.action === 'PUSH') {
+    if (props.history.action === 'PUSH' && props.location.pathname !== prevPathname.current) {
       console.log('%cSCROLLED', 'background-color: salmon; color: white; padding: 3px;')
       scrollTo(0) // default scroll duration = 200ms
     }
-  }
 
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/page1" component={Page1} />
-      </Switch>
-    )
-  }
+    prevPathname.current = props.location.pathname
+
+    // Note: When the component mounted, props.history.action === 'POP'
+  }, [props.history.action, props.location.pathname])
+
+  return (
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route exact path="/page1" component={Page1} />
+    </Switch>
+  )
 }
 
 const Wrapper = withRouter(SwitchWrapper)
