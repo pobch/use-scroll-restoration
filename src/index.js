@@ -11,17 +11,23 @@ function SwitchWrapper(props) {
   const prevPathname = useRef()
 
   useEffect(() => {
-    console.log('Rendered', props.history.action)
+    console.log('Rendered:', props.location.key)
 
     if (props.history.action === 'PUSH' && props.location.pathname !== prevPathname.current) {
-      console.log('%cSCROLLED', 'background-color: salmon; color: white; padding: 3px;')
       scrollTo(0) // default scroll duration = 200ms
     }
+    // Note: props.history.action === 'POP' when...
+    //       1. Back or Forward button
+    //       2. The component is first mounted
 
+    // save prev props
     prevPathname.current = props.location.pathname
 
-    // Note: When the component mounted, props.history.action === 'POP'
-  }, [props.history.action, props.location.pathname])
+    return () => {
+      console.log('Unrendered:', props.location.key, window.scrollY)
+      sessionStorage.setItem(props.location.key, String(window.scrollY))
+    }
+  }, [props.history.action, props.location.key, props.location.pathname])
 
   return (
     <Switch>
@@ -32,6 +38,15 @@ function SwitchWrapper(props) {
 }
 
 const Wrapper = withRouter(SwitchWrapper)
+
+/** -----------------------------
+ *           ReactDOM
+ * ------------------------------
+ */
+const isFirefox = typeof InstallTrigger !== 'undefined'
+if (isFirefox) {
+  window.history.scrollRestoration = 'manual'
+}
 
 ReactDOM.render(
   <BrowserRouter>

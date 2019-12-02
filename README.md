@@ -9,4 +9,4 @@ By the way, this implementation works because there is not any async api call to
 
 - [DONE] Make a custom hook and use functional component instead of class component
 - [DONE] Add async api call to make page's height dynamic
-- Use `localStorage` to store scroll position of every page instead of the original implementation
+- [DONE with pitfalls] Use `sessionStorage` to store scroll position of every page instead of the original implementation
