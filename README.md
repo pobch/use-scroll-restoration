@@ -1,4 +1,4 @@
-# Scroll Restoration with `react-router-dom` [SOLVED]
+# Scroll Restoration with `react-router-dom`
 
 I accidentally saw a working scroll restoration on this [website](https://wattenberger.com/blog/react-hooks).<br/>
 Here is the [repo](https://github.com/Wattenberger/Wattenberger-2019) of the website.
