@@ -31,3 +31,9 @@
   padding: 20px;
   border-bottom: 1px solid #888888;
 }
+
+.loading {
+  font-size: 46px;
+  color: salmon;
+  padding: 15px;
+}

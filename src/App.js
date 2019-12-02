@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import logo from './logo.svg'
 import './App.css'
 import { Link } from 'react-router-dom'
 
+const URL = 'https://jsonplaceholder.typicode.com/users'
 const data = Array(20).fill('/page1')
 
 function App() {
+  const [users, setUsers] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true)
+    setTimeout(() => {
+      axios
+        .get(URL)
+        .then(res => {
+          setUsers(res.data)
+          setIsLoading(false)
+        })
+        .catch(e => {
+          console.log(e)
+          setIsLoading(false)
+        })
+    }, 3000)
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -22,15 +43,28 @@ function App() {
           Learn React
         </a>
       </header>
-      <ul className="list-container">
-        {data.map((route, index) => {
-          return (
-            <li className="list-item" key={index}>
-              {index + 1} - Go to <Link to={route}>Page1</Link>
-            </li>
-          )
-        })}
-      </ul>
+      {isLoading ? (
+        <div className="loading">Loading . . .</div>
+      ) : (
+        <ul className="list-container">
+          {users.map(user => {
+            return (
+              <li className="list-item" key={user.username}>
+                {user.id} - {user.name}
+                <br />
+                Go to <Link to="/page1">Page1</Link>
+              </li>
+            )
+          })}
+          {data.map((route, index) => {
+            return (
+              <li className="list-item" key={index}>
+                {index + 1} - Go to <Link to={route}>Page1</Link>
+              </li>
+            )
+          })}
+        </ul>
+      )}
     </div>
   )
 }
