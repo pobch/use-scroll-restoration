@@ -11,7 +11,7 @@ function SwitchWrapper(props) {
   const prevPathname = useRef()
 
   useEffect(() => {
-    console.log('Rendered:', props.location.key)
+    console.log('Rendered:', props.location.key, window.scrollY)
 
     if (props.history.action === 'PUSH' && props.location.pathname !== prevPathname.current) {
       scrollTo(0) // default scroll duration = 200ms
