@@ -15,9 +15,9 @@ function Page1(props) {
   return (
     <div className="page">
       <div className="nav">
-        <Link to="/">Go home</Link>
+        <Link to="/">Go home</Link> <Link to="/page1">Page1</Link> <Link to="/page2">Page2</Link>
       </div>
-      <p>Lorem ipsum</p>
+      <p>Lorem ipsum {props.location.pathname}</p>
     </div>
   )
 }

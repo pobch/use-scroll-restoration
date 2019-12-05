@@ -33,6 +33,7 @@ function SwitchWrapper(props) {
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/page1" component={Page1} />
+      <Route exact path="/page2" component={Page1} />
     </Switch>
   )
 }
