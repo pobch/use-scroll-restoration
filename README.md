@@ -10,9 +10,10 @@ By the way, this implementation works because there is not any async api call to
 - [DONE] Make a custom hook and use functional component instead of class component
 - [DONE] Add async api call to make page's height dynamic
 - [DONE with pitfalls] Use `sessionStorage` to store scroll position of every page instead of the original implementation
-- Fix bug that occurs because of this execution order (re-rendering happens before clearing the last effect):
+- Fix bug that occurs because of this execution order (DOM updated happens before clearing the last effect):
   ```
-  render -> useEffect -> *re-render/mount -> *clear last effect -> useEffect
+  render -> useEffect -> *re-render (update) -> *DOM updated -> *clear last effect -> useEffect
+  render -> useEffect -> *render (mount) -> *clear last effect -> *DOM updated -> useEffect
   ```
 - Try this way instead: https://github.com/janpaul123/delayed-scroll-restoration-polyfill
 
