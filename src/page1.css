@@ -1,8 +1,28 @@
 .page {
   padding-top: 50px;
+  padding-bottom: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page.page1 {
   height: 5000px;
   background-color: salmon;
-  color: white;
+}
+
+.page.page1::after {
+  content: 'end of page: 5000px';
+}
+
+.page.page2 {
+  height: 6000px;
+  background-color: blueviolet;
+}
+
+.page.page2::after {
+  content: 'end of page: 6000px';
 }
 
 .nav {

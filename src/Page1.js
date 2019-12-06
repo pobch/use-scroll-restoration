@@ -13,7 +13,7 @@ function Page1(props) {
   }, [props.location.key])
 
   return (
-    <div className="page">
+    <div className={`page ${props.location.pathname.slice(1)}`}>
       <div className="nav">
         <Link to="/">Go home</Link> <Link to="/page1">Page1</Link> <Link to="/page2">Page2</Link>
       </div>
