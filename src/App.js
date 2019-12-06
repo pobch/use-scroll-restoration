@@ -22,7 +22,7 @@ function App(props) {
           setIsLoading(false)
         })
         .catch(e => {
-          console.log(e)
+          console.error(e)
           setIsLoading(false)
         })
     }, 3000)
