@@ -7,14 +7,20 @@ By the way, this implementation works because there is not any async api call to
 
 ## TODO
 
-- [DONE] Make a custom hook and use functional component instead of class component
-- [DONE] Add async api call to make page's height dynamic
-- [DONE with pitfalls] Use `sessionStorage` to store scroll position of every page instead of the original implementation
-- Fix bug that occurs because of this execution order (DOM updated happens before clearing the last effect):
-  ```
-  render -> useEffect -> *re-render (update) -> *DOM updated -> *clear last effect -> useEffect
-  render -> useEffect -> *render (mount) -> *clear last effect -> *DOM updated -> useEffect
-  ```
+1. [DONE] Make a custom hook and use functional component instead of class component
+2. [DONE] Add async api call to make page's height dynamic
+3. [DONE with pitfalls] Use `sessionStorage` to store scroll position of every page instead of the original implementation
+4. [DONE but create bugs as 6., 7.] Fix bug that occurs because of this execution order (DOM updated happens before clearing the last effect):
+
+```
+render -> useEffect -> *re-render (update) -> *DOM updated -> *clear last effect -> useEffect
+render -> useEffect -> *render (mount) -> *clear last effect -> *DOM updated -> useEffect
+```
+
+5. [DONE] Use `window`'s `scroll` event to save the scroll postion into `sessionStorage` instead.
+6. Bug#1: Find '@BUG' keyword to see more details
+7. Bug#2: The `window`'s `scroll` can be triggered by a browser when an user navigates to a new page which has different height from the previous page. Hence, the saved scroll position in `sessionStorage` can be replaced unexpectedly.
+
 - Try this way instead: https://github.com/janpaul123/delayed-scroll-restoration-polyfill
 
 ## Quirks that I found

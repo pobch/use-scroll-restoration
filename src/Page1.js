@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './page1.css'
 import { scrollTo } from './scrollTo'
 
 function Page1(props) {
+  const prevPathname = useRef()
   useEffect(() => {
-    if (sessionStorage.getItem(props.location.key)) {
+    if (
+      props.history.action === 'POP' &&
+      props.location.pathname !== prevPathname.current &&
+      sessionStorage.getItem(props.location.key)
+    ) {
       window.requestAnimationFrame(() => {
         scrollTo(sessionStorage.getItem(props.location.key))
       })
     }
-  }, [props.location.key])
+    prevPathname.current = props.location.pathname
+  }, [props.history.action, props.location.key, props.location.pathname])
 
   return (
     <div className={`page ${props.location.pathname.slice(1)}`}>

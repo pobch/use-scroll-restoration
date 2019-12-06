@@ -19,11 +19,13 @@ function SwitchWrapper(props) {
 
     // save prev props
     prevPathname.current = props.location.pathname
-
-    return () => {
-      sessionStorage.setItem(props.location.key, String(window.scrollY))
-    }
   }, [props.history.action, props.location.key, props.location.pathname])
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      sessionStorage.setItem(props.location.key, String(window.scrollY))
+    })
+  }, [props.location.key])
 
   return (
     <Switch>
@@ -40,10 +42,10 @@ const Wrapper = withRouter(SwitchWrapper)
  *           ReactDOM
  * ------------------------------
  */
-const isFirefox = typeof InstallTrigger !== 'undefined'
-if (isFirefox) {
-  window.history.scrollRestoration = 'manual'
-}
+// const isFirefox = typeof InstallTrigger !== 'undefined'
+// if (isFirefox) {
+//   window.history.scrollRestoration = 'manual'
+// }
 
 ReactDOM.render(
   <BrowserRouter>

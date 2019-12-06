@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import logo from './logo.svg'
 import './App.css'
@@ -28,13 +28,25 @@ function App(props) {
     }, 3000)
   }, [])
 
+  const prevPathname = useRef()
   useEffect(() => {
-    if (sessionStorage.getItem(props.location.key) && users.length > 0) {
+    if (
+      props.history.action === 'POP' &&
+      props.location.pathname !== prevPathname.current &&
+      sessionStorage.getItem(props.location.key) &&
+      users.length > 0
+    ) {
+      // @BUG: This won't be called as expected because of the following scenario.
+      //  1. When first mount, we are calling the api.
+      //    At that time, props.location.pathname ('/') !== prevPathname.current (null) but users.length === 0
+      //  2. Then, we receive the api response.
+      //    At that time, users.length > 0 but props.location.pathname ('/') === prevPathname.current ('/')
       window.requestAnimationFrame(() => {
         scrollTo(sessionStorage.getItem(props.location.key))
       })
     }
-  }, [props.location.key, users])
+    prevPathname.current = props.location.pathname
+  }, [props.history.action, props.location.key, props.location.pathname, users])
 
   return (
     <div className="App">
