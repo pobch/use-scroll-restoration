@@ -22,7 +22,12 @@ By the way, this implementation works because there is not any async api call to
 6. Bug#1: Find '@BUG' keyword to see more details
 7. Bug#2: The `window`'s `scroll` can be triggered by a browser when an user navigates to a new page which has different height from the previous page. Hence, the saved scroll position in `sessionStorage` can be replaced unexpectedly.
 
-- Try this way instead: https://github.com/janpaul123/delayed-scroll-restoration-polyfill
+## Possible Solutions
+
+1. Modify `history` to save scroll position: https://github.com/janpaul123/delayed-scroll-restoration-polyfill
+2. https://stackoverflow.com/a/52978973/6568503
+3. https://stackoverflow.com/a/58806940/6568503
+4. https://stackoverflow.com/a/57432069/6568503
 
 ## Quirks that I found
 
