@@ -19,7 +19,7 @@ function SwitchWrapper(props) {
 
     // save prev props
     prevPathname.current = props.location.pathname
-  }, [props.history.action, props.location.key, props.location.pathname])
+  }, [props.history.action, props.location.pathname])
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
