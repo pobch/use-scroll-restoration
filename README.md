@@ -12,10 +12,11 @@ By the way, this implementation works because there is not any async api call to
 3. [DONE with pitfalls] Use `sessionStorage` to store scroll position of every page instead of the original implementation
 4. [DONE but create bugs as 6., 7.] Fix bug that occurs because of this execution order (DOM updated happens before clearing the last effect):
 
-```
-render -> useEffect -> *re-render (update) -> *DOM updated -> *clear last effect -> useEffect
-render -> useEffect -> *render (mount) -> *clear last effect -> *DOM updated -> useEffect
-```
+   ```
+   render -> useEffect -> *re-render (update) -> *DOM updated -> *clear last effect -> useEffect
+
+   render -> useEffect -> *render (mount) -> *clear last effect -> *DOM updated -> useEffect
+   ```
 
 5. [DONE] Use `window`'s `scroll` event to save the scroll postion into `sessionStorage` instead.
 6. Bug#1: Find '@BUG' keyword to see more details
