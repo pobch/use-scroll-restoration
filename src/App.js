@@ -25,28 +25,28 @@ function App(props) {
           console.error(e)
           setIsLoading(false)
         })
-    }, 3000)
+    }, 2000)
   }, [])
 
-  const prevPathname = useRef()
-  useEffect(() => {
-    if (
-      props.history.action === 'POP' &&
-      props.location.pathname !== prevPathname.current &&
-      sessionStorage.getItem(props.location.key) &&
-      users.length > 0
-    ) {
-      // @BUG: This won't be called as expected because of the following scenario.
-      //  1. When first mount, we are calling the api.
-      //    At that time, props.location.pathname ('/') !== prevPathname.current (null) but users.length === 0
-      //  2. Then, we receive the api response.
-      //    At that time, users.length > 0 but props.location.pathname ('/') === prevPathname.current ('/')
-      window.requestAnimationFrame(() => {
-        scrollTo(sessionStorage.getItem(props.location.key))
-      })
-    }
-    prevPathname.current = props.location.pathname
-  }, [props.history.action, props.location.key, props.location.pathname, users])
+  // const prevPathname = useRef()
+  // useEffect(() => {
+  //   if (
+  //     props.history.action === 'POP' &&
+  //     props.location.pathname !== prevPathname.current &&
+  //     sessionStorage.getItem(props.location.key) &&
+  //     users.length > 0
+  //   ) {
+  //     // @BUG: This won't be called as expected because of the following scenario.
+  //     //  1. When first mount, we are calling the api.
+  //     //    At that time, props.location.pathname ('/') !== prevPathname.current (null) but users.length === 0
+  //     //  2. Then, we receive the api response.
+  //     //    At that time, users.length > 0 but props.location.pathname ('/') === prevPathname.current ('/')
+  //     window.requestAnimationFrame(() => {
+  //       scrollTo(sessionStorage.getItem(props.location.key))
+  //     })
+  //   }
+  //   prevPathname.current = props.location.pathname
+  // }, [props.history.action, props.location.key, props.location.pathname, users])
 
   return (
     <div className="App">

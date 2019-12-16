@@ -4,19 +4,19 @@ import './page1.css'
 import { scrollTo } from './scrollTo'
 
 function Page1(props) {
-  const prevPathname = useRef()
-  useEffect(() => {
-    if (
-      props.history.action === 'POP' &&
-      props.location.pathname !== prevPathname.current &&
-      sessionStorage.getItem(props.location.key)
-    ) {
-      window.requestAnimationFrame(() => {
-        scrollTo(sessionStorage.getItem(props.location.key))
-      })
-    }
-    prevPathname.current = props.location.pathname
-  }, [props.history.action, props.location.key, props.location.pathname])
+  // const prevPathname = useRef()
+  // useEffect(() => {
+  //   if (
+  //     props.history.action === 'POP' &&
+  //     props.location.pathname !== prevPathname.current &&
+  //     sessionStorage.getItem(props.location.key)
+  //   ) {
+  //     window.requestAnimationFrame(() => {
+  //       scrollTo(sessionStorage.getItem(props.location.key))
+  //     })
+  //   }
+  //   prevPathname.current = props.location.pathname
+  // }, [props.history.action, props.location.key, props.location.pathname])
 
   return (
     <div className={`page ${props.location.pathname.slice(1)}`}>

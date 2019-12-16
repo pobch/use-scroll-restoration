@@ -5,6 +5,7 @@ import App from './App'
 import Page1 from './Page1'
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
 import { scrollTo } from './scrollTo'
+import './scrollRestoration'
 
 function SwitchWrapper(props) {
   const prevPathname = useRef()
@@ -21,11 +22,11 @@ function SwitchWrapper(props) {
     prevPathname.current = props.location.pathname
   }, [props.history.action, props.location.pathname])
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      sessionStorage.setItem(props.location.key, String(window.scrollY))
-    })
-  }, [props.location.key])
+  // useEffect(() => {
+  //   window.addEventListener('scroll', () => {
+  //     sessionStorage.setItem(props.location.key, String(window.scrollY))
+  //   })
+  // }, [props.location.key])
 
   return (
     <Switch>
