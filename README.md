@@ -27,7 +27,7 @@ By the way, after reading their repo, I think their implementation works because
 
 ## My research and my trial & error
 
-#### TODO
+#### TODO of my trial & error
 
 1. [DONE] Make a custom hook and use functional component instead of class component
 2. [DONE] Add async api call to make page's height dynamic
@@ -44,6 +44,8 @@ By the way, after reading their repo, I think their implementation works because
 6. Bug#1: Find '@BUG' keyword to see more details
 7. Bug#2: The `window`'s `scroll` can be triggered by a browser when an user navigates to a new page which has different height from the previous page. Hence, the saved scroll position in `sessionStorage` can be replaced unexpectedly.
 
+Because of bugs and many quirks, in the end, I decided to use implementation as explained in the **Possible Solutions** section instead.
+
 #### Possible Solutions
 
 1. Modify `history` to save scroll position: https://github.com/janpaul123/delayed-scroll-restoration-polyfill
@@ -51,7 +53,7 @@ By the way, after reading their repo, I think their implementation works because
 3. https://stackoverflow.com/a/58806940/6568503
 4. https://stackoverflow.com/a/57432069/6568503
 
-#### Quirks that I found
+#### Quirks that I found while doing trial & error
 
 1. If an `<a>` tag was clicked, the returned function of `useEffect()` will not be called, i.e. `componentWillUnmount()` will not be called.
 2. Because of **1.**, we cannot save the scroll position in `sessionStorage` or set `history.scrollRestoration` back to `auto` while an user navigating to an external link, i.e. clicking `<a>` tag.
