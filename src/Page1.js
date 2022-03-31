@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './page1.css'
-import { scrollTo } from './scrollTo'
 
 function Page1(props) {
   // const prevPathname = useRef()
@@ -21,9 +20,18 @@ function Page1(props) {
   return (
     <div className={`page ${props.location.pathname.slice(1)}`}>
       <div className="nav">
-        <Link to="/">Go home</Link> <Link to="/page1">Page1</Link> <Link to="/page2">Page2</Link>
+        Go to <Link to="/">Home</Link> <Link to="/page1">Page1</Link> <Link to="/page2">Page2</Link>
       </div>
-      <p>Lorem ipsum {props.location.pathname}</p>
+      <h1>{props.location.pathname.slice(1)} (No Data from API)</h1>
+      {Array(80)
+        .fill(null)
+        .map((_, i) => {
+          return (
+            <p key={i}>
+              {props.location.pathname} | Item {i + 1}
+            </p>
+          )
+        })}
     </div>
   )
 }

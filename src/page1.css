@@ -17,12 +17,12 @@
 }
 
 .page.page2 {
-  height: 6000px;
+  height: 8000px;
   background-color: blueviolet;
 }
 
 .page.page2::after {
-  content: 'end of page: 6000px';
+  content: 'end of page: 8000px';
 }
 
 .nav {

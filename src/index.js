@@ -14,9 +14,9 @@ function SwitchWrapper(props) {
     if (props.history.action === 'PUSH' && props.location.pathname !== prevPathname.current) {
       scrollTo(0) // default scroll duration = 200ms
     }
-    // Note: props.history.action === 'POP' when...
-    //       1. Back or Forward button
-    //       2. The component is first mounted
+    // * Note: props.history.action === 'POP' when...
+    // *       1. Back or Forward button
+    // *       2. The component is first mounted
 
     // save prev props
     prevPathname.current = props.location.pathname

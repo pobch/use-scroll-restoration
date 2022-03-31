@@ -1,30 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react'
-import axios from 'axios'
-import logo from './logo.svg'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
-import { scrollTo } from './scrollTo'
 
-const URL = 'https://jsonplaceholder.typicode.com/users'
-const data = Array(20).fill('/page1')
-
-function App(props) {
+function App() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
     setTimeout(() => {
-      axios
-        .get(URL)
-        .then(res => {
-          setUsers(res.data)
-          setIsLoading(false)
-        })
-        .catch(e => {
-          console.error(e)
-          setIsLoading(false)
-        })
+      setUsers(Array(100).fill(null))
+      setIsLoading(false)
     }, 2000)
   }, [])
 
@@ -50,37 +36,19 @@ function App(props) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          // target="_blank"
-          // rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-header">
+        <h1>Home Page (Data from API)</h1>
+      </div>
       {isLoading ? (
-        <div className="loading">Loading . . .</div>
+        <div className="loading">Fetching API...</div>
       ) : (
         <ul className="list-container">
-          {users.map(user => {
+          {users.map((_, i) => {
             return (
-              <li className="list-item" key={user.username}>
-                {user.id} - {user.name}
+              <li className="list-item" key={i}>
+                /home | Item {i + 1}
                 <br />
-                Go to <Link to="/page1">Page1</Link>
-              </li>
-            )
-          })}
-          {data.map((route, index) => {
-            return (
-              <li className="list-item" key={index}>
-                {index + 1} - Go to <Link to={route}>Page1</Link>
+                Go to <Link to="/page1">Page1</Link> <Link to="/page2">Page2</Link>
               </li>
             )
           })}
